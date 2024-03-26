@@ -46,20 +46,33 @@
         <summary>una dialog di dettagli</summary>
         <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog">Riferimento MDN</a></p>
     </details>
+    <div> <img src="" alt="" id="foto"> </div>
     <script type="module">
         import fetch from './js/fetch.js';
+        
+        getJSON();
 
-        /***
+        // Get json from backend
+        async function getJSON() {
+            let jsonData = await fetch[`getCars`]();
+            console.log(jsonData);
+            console.log(jsonData[0])
+            console.log(jsonData[0].name)
+            document.getElementById("foto").setAttribute("src", jsonData[0].image);
+        }
+
+        /* **
          * Funzione che riporta l'output di un servizio formattato in un code Element
          * @Parameters:
          * f: la funzione che restituisce l'output json del servizio
          * idCode: l'id dell'elemento in cui incollare il contenuto
          */
-        async function showDataInCode(f, idCode) {
+       /*  async function showDataInCode(f, idCode) {
             const data = await f();
+            //console.log(data[0].name);
             const codeElement = document.getElementById(idCode);
-            codeElement.innerHTML = JSON.stringify(data, null, 4);
-        }
+            codeElement.innerHTML = JSON.stringify(data, null, 4); 
+        } */
 
         /***
          * Funzione che aggiunge all'evento di apertura la chiamata al servizio del back-end
@@ -69,7 +82,7 @@
          *  * l'elemento details (btnXXXX) a cui agganciare l'evento
          *  * l'elemento code (resultXXXX) in cui incollare il risultato
          */
-        async function addToggleEventToDetail(type) {
+        /* async function addToggleEventToDetail(type) {
             const detailElement = document.getElementById(`btn${type}`);
             detailElement.addEventListener("toggle", (event) => {
                 if (detailElement.open) {
@@ -79,7 +92,7 @@
         }
 
         //Applico la logica di chiamata ed esposizione per tutti i 3 tipi di servizio che ho a disposizione
-        ["Cars", "Techs", "Clothes"].forEach(type => addToggleEventToDetail(type));
+        ["Cars", "Techs", "Clothes"].forEach(type => addToggleEventToDetail(type)); */
     </script>
 </body>
 
